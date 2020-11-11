@@ -22,6 +22,7 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  IconButton,
 } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -301,19 +302,16 @@ export const CheckboxTree = ({
               </ListItemIcon>
               <ListItemText className={classes.text} primary={item.label} />
               {Object.values(item.options).length ? (
-                <>
+                <IconButton
+                  size="small"
+                  onClick={event => handleOpen(event, item.label)}
+                >
                   {item.isOpen ? (
-                    <ExpandLess
-                      data-testid="expandable"
-                      onClick={event => handleOpen(event, item.label)}
-                    />
+                    <ExpandLess data-testid="expandable" />
                   ) : (
-                    <ExpandMore
-                      data-testid="expandable"
-                      onClick={event => handleOpen(event, item.label)}
-                    />
+                    <ExpandMore data-testid="expandable" />
                   )}
-                </>
+                </IconButton>
               ) : null}
             </ListItem>
             <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
