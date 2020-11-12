@@ -15,3 +15,4 @@
  */
 
 export { SelectComponent as Select } from './Select';
+export type { SelectSelection } from './Select';

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { Select } from '.';
+import React, { useState } from 'react';
+import { Select, SelectSelection } from '.';
 
 export default {
   title: 'Inputs/Select',
@@ -37,21 +37,30 @@ const SELECT_ITEMS = [
   },
 ];
 
-export const Default = () => (
-  <Select
-    onChange={() => {}}
-    placeholder="All results"
-    label="Default"
-    items={SELECT_ITEMS}
-  />
-);
+export const Default = () => {
+  const [value, setValue] = useState<SelectSelection>('');
 
-export const Multiple = () => (
-  <Select
-    placeholder="All results"
-    label="Multiple"
-    items={SELECT_ITEMS}
-    multiple
-    onChange={() => {}}
-  />
-);
+  return (
+    <Select
+      selected={value}
+      onChange={setValue}
+      placeholder="All results"
+      label="Default"
+      items={SELECT_ITEMS}
+    />
+  );
+};
+
+export const Multiple = () => {
+  const [value, setValue] = useState<SelectSelection>([]);
+  return (
+    <Select
+      selected={value}
+      onChange={setValue}
+      placeholder="All results"
+      label="Multiple"
+      items={SELECT_ITEMS}
+      multiple
+    />
+  );
+};

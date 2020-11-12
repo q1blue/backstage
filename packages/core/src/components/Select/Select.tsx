@@ -30,7 +30,7 @@ import {
   Theme,
   withStyles,
 } from '@material-ui/core/styles';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ClosedDropdown from './static/ClosedDropdown';
 import OpenedDropdown from './static/OpenedDropdown';
 
@@ -94,16 +94,16 @@ type Item = {
   value: string | number;
 };
 
-type Selection = string | string[] | number | number[];
+// TODO: We could split this up into two components to avoid the strange typing here
+export type SelectSelection = string | string[] | number | number[];
 
 export type SelectProps = {
   multiple?: boolean;
   items: Item[];
   label: string;
   placeholder?: string;
-  selected?: Selection;
-  onChange: (arg: Selection) => void;
-  triggerReset?: boolean;
+  selected: SelectSelection;
+  onChange: (arg: SelectSelection) => void;
 };
 
 export const SelectComponent = ({
@@ -113,27 +113,13 @@ export const SelectComponent = ({
   placeholder,
   selected,
   onChange,
-  triggerReset,
 }: SelectProps) => {
   const classes = useStyles();
-  const [value, setValue] = useState<Selection>(
-    selected || (multiple ? [] : ''),
-  );
   const [isOpen, setOpen] = useState(false);
-
-  useEffect(() => {
-    setValue(multiple ? [] : '');
-  }, [triggerReset, multiple]);
-
-  useEffect(() => {
-    if (selected !== undefined) {
-      setValue(selected);
-    }
-  }, [selected]);
+  const value = selected || (multiple ? [] : '');
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setValue(event.target.value as Selection);
-    onChange(event.target.value as Selection);
+    onChange(event.target.value as SelectSelection);
   };
 
   const handleClick = (event: React.ChangeEvent<any>) => {
@@ -151,7 +137,6 @@ export const SelectComponent = ({
 
   const handleDelete = (selectedValue: string | number) => () => {
     const newValue = (value as any[]).filter(chip => chip !== selectedValue);
-    setValue(newValue);
     onChange(newValue);
   };
 
