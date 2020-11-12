@@ -29,12 +29,9 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import produce from 'immer';
 import { isEqual } from 'lodash';
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { usePrevious } from 'react-use';
-
-type IndexedObject<T> = {
-  [key: string]: T;
-};
+import { useSet } from 'react-use';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,8 +72,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-/* SUB_CATEGORY */
+// TODO: Rename TO Category
+// TODO: Rename isInitialOpen/Checked
 
+// TODO: Why is this a SUB category?
 type SubCategory = {
   label: string;
   isChecked?: boolean;
@@ -84,229 +83,130 @@ type SubCategory = {
   options?: Option[];
 };
 
-type SubCategoryWithIndexedOptions = {
-  label: string;
-  isChecked?: boolean;
-  isOpen?: boolean;
-  options: IndexedObject<Option>;
-};
-
-/* OPTION */
-
 type Option = {
   label: string;
+  // TODO: What is value used for? Right now everything is build upon the label, but if we want to fix that, we need a value for subcatgeory too!
   value: string | number;
   isChecked?: boolean;
 };
 
-type Selection = { category?: string; selectedChildren?: string[] }[];
+// TODO: Rename to state? handle as map? better usability...
+export type CheckboxTreeSelection = {
+  category: string;
+  isChecked?: boolean;
+  // TODO: Add isOpen state here
+  selectedChildren?: string[];
+}[];
 
 export type CheckboxTreeProps = {
   subCategories: SubCategory[];
   label: string;
-  triggerReset?: boolean;
-  selected?: Selection;
-  onChange: (arg: Selection) => any;
+  onChange: (arg: CheckboxTreeSelection) => any;
 };
-
-/* REDUCER */
-
-type checkOptionPayload = {
-  subCategoryLabel: string;
-  optionLabel: string;
-};
-
-type Action =
-  | { type: 'checkOption'; payload: checkOptionPayload }
-  | { type: 'checkCategory'; payload: string }
-  | { type: 'toggleCategory'; payload: string }
-  | {
-      type: 'updateCategories';
-      payload: IndexedObject<SubCategoryWithIndexedOptions>;
-    }
-  | { type: 'updateSelected'; payload: Selection }
-  | { type: 'triggerReset' };
-
-const reducer = (
-  state: IndexedObject<SubCategoryWithIndexedOptions>,
-  action: Action,
-) => {
-  switch (action.type) {
-    case 'checkOption': {
-      return produce(state, newState => {
-        const category = newState[action.payload.subCategoryLabel];
-        const option = category.options[action.payload.optionLabel];
-        option.isChecked = !option.isChecked;
-        category.isChecked = Object.values(category.options).every(
-          o => o.isChecked,
-        );
-      });
-    }
-    case 'checkCategory': {
-      return produce(state, newState => {
-        const category = newState[action.payload];
-        const options = category.options;
-        category.isChecked = !category.isChecked;
-        for (const option in options) {
-          options[option].isChecked = category.isChecked;
-        }
-      });
-    }
-    case 'toggleCategory':
-      return produce(state, newState => {
-        const category = newState[action.payload];
-        category.isOpen = !category.isOpen;
-      });
-    case 'triggerReset': {
-      return produce(state, newState => {
-        for (const category in newState) {
-          newState[category].isChecked = false;
-          for (const option in newState[category].options) {
-            newState[category].options[option].isChecked =
-              newState[category].isChecked;
-          }
-        }
-      });
-    }
-    case 'updateCategories': {
-      return produce(state, newState => {
-        for (const category in newState) {
-          delete newState[category];
-        }
-
-        for (const category in action.payload) {
-          newState[category] = action.payload[category];
-
-          if (state[category]) {
-            newState[category].isChecked = state[category].isChecked;
-            newState[category].isOpen = state[category].isOpen;
-          }
-        }
-      });
-    }
-    case 'updateSelected': {
-      return produce(state, newState => {
-        for (const category in newState) {
-          const selection = action.payload.find(s => s.category === category);
-
-          if (selection) {
-            newState[category].isChecked = true;
-
-            for (const option in newState[category].options) {
-              newState[category].options[option].isChecked =
-                selection.selectedChildren?.includes(option) || false;
-            }
-          }
-        }
-      });
-    }
-    default:
-      return state;
-  }
-};
-
-const indexer = (
-  arr: SubCategory[],
-): IndexedObject<SubCategoryWithIndexedOptions> =>
-  arr.reduce((accumulator, el) => {
-    if (el.options) {
-      return {
-        ...accumulator,
-        [el.label]: {
-          label: el.label,
-          isChecked: el.isChecked || false,
-          isOpen: false,
-          options: indexer(el.options),
-        },
-      };
-    }
-    return {
-      ...accumulator,
-      [el.label]: { ...el, isChecked: el.isChecked || false },
-    };
-  }, {});
 
 export const CheckboxTree = ({
   subCategories,
   label,
-  selected,
   onChange,
-  triggerReset,
 }: CheckboxTreeProps) => {
   const classes = useStyles();
 
-  const [state, dispatch] = useReducer(reducer, indexer(subCategories));
+  // TODO: Reconsider if the open state should also be controlled?
+  const [
+    ,
+    {
+      add: addOpenCategoryLabel,
+      has: hasOpenCategoryLabel,
+      toggle: toggleOpenCategoryLabel,
+      reset: resetOpenCategoryLabel,
+    },
+  ] = useSet(
+    new Set<string>(subCategories.filter(c => c.isOpen).map(c => c.label)),
+  );
 
-  const handleOpen = (event: any, value: any) => {
+  useEffect(() => {
+    resetOpenCategoryLabel();
+
+    subCategories
+      .filter(c => c.isOpen)
+      .map(c => c.label)
+      .forEach(addOpenCategoryLabel);
+  }, [subCategories]);
+
+  const handleOpen = (event: any, category: SubCategory) => {
     event.stopPropagation();
-    dispatch({ type: 'toggleCategory', payload: value });
+    toggleCategory(category);
   };
 
-  const previousSubCategories = usePrevious(subCategories);
+  const toggleCategory = (category: SubCategory) => {
+    toggleOpenCategoryLabel(category.label);
 
-  useEffect(() => {
-    const values = Object.values(state).map(category => ({
-      category: category.isChecked ? category.label : undefined,
-      selectedChildren: Object.values(category.options)
-        .filter(option => option.isChecked)
-        .map(option => option.label),
-    }));
-    onChange(values);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+    // TODO: Maybe expose open state?
+  };
 
-  useEffect(() => {
-    dispatch({ type: 'triggerReset' });
-  }, [triggerReset]);
+  const updateSelection = () => {
+    onChange(
+      subCategories.map(c => ({
+        category: c.label,
+        isChecked: c.isChecked,
+        selectedChildren: c.options?.filter(o => o.isChecked).map(o => o.label),
+      })),
+    );
+  };
 
-  useEffect(() => {
-    if (selected) {
-      dispatch({ type: 'updateSelected', payload: selected });
+  const checkCategory = (category: SubCategory) => {
+    category.isChecked = !category.isChecked;
+
+    console.log('Check C');
+
+    if (category.isChecked && category.options) {
+      category.options.forEach(o => (o.isChecked = true));
     }
-  }, [selected]);
 
-  useEffect(() => {
-    if (!isEqual(subCategories, previousSubCategories)) {
-      dispatch({
-        type: 'updateCategories',
-        payload: indexer(subCategories),
-      });
-    }
-  }, [subCategories, previousSubCategories]);
+    updateSelection();
+  };
+
+  const checkOption = (category: SubCategory, option: Option) => {
+    option.isChecked = !option.isChecked;
+    category.isChecked = category.options?.every(o => o.isChecked);
+
+    console.log('Check O', category);
+
+    updateSelection();
+  };
+
+  const isCategoryOpen = (category: SubCategory): boolean => {
+    return hasOpenCategoryLabel(category.label);
+  };
 
   return (
     <div>
       <Typography variant="button">{label}</Typography>
       <List className={classes.root}>
-        {Object.values(state).map(item => (
-          <div key={item.label}>
+        {subCategories.map(category => (
+          <div key={category.label}>
             <ListItem
               className={classes.listItem}
               dense
               button
-              onClick={() =>
-                dispatch({
-                  type: 'checkCategory',
-                  payload: item.label,
-                })
-              }
+              onClick={() => checkCategory(category)}
             >
               <ListItemIcon className={classes.listItemIcon}>
                 <Checkbox
                   color="primary"
                   edge="start"
-                  checked={item.isChecked}
+                  checked={category.isChecked || false}
                   tabIndex={-1}
                   disableRipple
                 />
               </ListItemIcon>
-              <ListItemText className={classes.text} primary={item.label} />
-              {Object.values(item.options).length ? (
+              <ListItemText className={classes.text} primary={category.label} />
+              {category.options?.length ? (
                 <IconButton
                   size="small"
-                  onClick={event => handleOpen(event, item.label)}
+                  onClick={event => handleOpen(event, category)}
                 >
-                  {item.isOpen ? (
+                  {isCategoryOpen(category) ? (
                     <ExpandLess data-testid="expandable" />
                   ) : (
                     <ExpandMore data-testid="expandable" />
@@ -314,28 +214,24 @@ export const CheckboxTree = ({
                 </IconButton>
               ) : null}
             </ListItem>
-            <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
+            <Collapse
+              in={isCategoryOpen(category)}
+              timeout="auto"
+              unmountOnExit
+            >
               <List component="div" disablePadding>
-                {Object.values(item.options).map(option => (
+                {category.options?.map(option => (
                   <ListItem
                     button
                     key={option.label}
                     className={classes.nested}
-                    onClick={() =>
-                      dispatch({
-                        type: 'checkOption',
-                        payload: {
-                          subCategoryLabel: item.label,
-                          optionLabel: option.label,
-                        },
-                      })
-                    }
+                    onClick={() => checkOption(category, option)}
                   >
                     <ListItemIcon className={classes.listItemIcon}>
                       <Checkbox
                         color="primary"
                         edge="start"
-                        checked={option.isChecked}
+                        checked={option.isChecked || false}
                         tabIndex={-1}
                         disableRipple
                       />

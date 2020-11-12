@@ -16,10 +16,11 @@
 
 import React, { useState } from 'react';
 import { CheckboxTree } from '.';
+import { CheckboxTreeSelection } from './CheckboxTree';
 
 const CHECKBOX_TREE_ITEMS = [
   {
-    label: 'Genereic subcategory name 1',
+    label: 'Generic subcategory name 1',
     options: [
       {
         label: 'Option 1',
@@ -32,7 +33,7 @@ const CHECKBOX_TREE_ITEMS = [
     ],
   },
   {
-    label: 'Genereic subcategory name 2',
+    label: 'Generic subcategory name 2',
     options: [
       {
         label: 'Option 1',
@@ -45,7 +46,7 @@ const CHECKBOX_TREE_ITEMS = [
     ],
   },
   {
-    label: 'Genereic subcategory name 3',
+    label: 'Generic subcategory name 3',
     options: [
       {
         label: 'Option 1',
@@ -73,6 +74,9 @@ export const Default = () => (
 );
 
 export const DynamicTree = () => {
+  const [selected, setSelected] = useState<CheckboxTreeSelection>([]);
+  const [tree, setTree] = useState(generateTree());
+
   function generateTree(showMore: boolean = false) {
     const t = [
       {
@@ -91,11 +95,10 @@ export const DynamicTree = () => {
     return t;
   }
 
-  const [tree, setTree] = useState(generateTree());
-
   return (
     <CheckboxTree
       onChange={state => {
+        setSelected(state);
         setTree(generateTree(state.some(c => c.category === 'Show more')));
       }}
       label="default"

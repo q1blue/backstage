@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
 import { BackstageTheme } from '@backstage/theme';
 import { Button, makeStyles } from '@material-ui/core';
-import { Select } from '../Select';
+import React from 'react';
 import { CheckboxTree } from '../CheckboxTree';
 import { CheckboxTreeProps } from '../CheckboxTree/CheckboxTree';
+import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 
 const useSubvalueCellStyles = makeStyles<BackstageTheme>(theme => ({
@@ -73,21 +73,11 @@ export const Filters = (props: Props) => {
   const classes = useSubvalueCellStyles();
 
   const { onChangeFilters } = props;
+  const selectedFilters = props.selectedFilters || {};
 
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({
-    ...props.selectedFilters,
-  });
-  const [reset, triggerReset] = useState(false);
-
-  // Trigger re-rendering
   const handleClick = () => {
-    setSelectedFilters({});
-    triggerReset(el => !el);
+    onChangeFilters({});
   };
-
-  useEffect(() => {
-    onChangeFilters(selectedFilters);
-  }, [selectedFilters, onChangeFilters]);
 
   // As material table doesn't provide a way to add a column filter tab we will make our own filter logic
   return (
@@ -103,7 +93,6 @@ export const Filters = (props: Props) => {
           props.filters.map(filter =>
             filter.type === 'checkbox-tree' ? (
               <CheckboxTree
-                triggerReset={reset}
                 key={filter.element.label}
                 {...(filter.element as CheckboxTreeProps)}
                 selected={
@@ -116,7 +105,7 @@ export const Filters = (props: Props) => {
                     : undefined
                 }
                 onChange={el =>
-                  setSelectedFilters({
+                  onChangeFilters({
                     ...selectedFilters,
                     [filter.element.label]: el
                       .filter(
@@ -138,12 +127,11 @@ export const Filters = (props: Props) => {
               />
             ) : (
               <Select
-                triggerReset={reset}
                 key={filter.element.label}
                 {...(filter.element as SelectProps)}
                 selected={selectedFilters[filter.element.label]}
                 onChange={el =>
-                  setSelectedFilters({
+                  onChangeFilters({
                     ...selectedFilters,
                     [filter.element.label]: el as any,
                   })

@@ -21,7 +21,7 @@ import { CheckboxTree } from '.';
 
 const CHECKBOX_TREE_ITEMS = [
   {
-    label: 'Genereic subcategory name 1',
+    label: 'Generic subcategory name 1',
     options: [
       {
         label: 'Option 1',
@@ -45,8 +45,8 @@ describe('<CheckboxTree />', () => {
   it('renders without exploding', async () => {
     const { getByText, getByTestId } = render(<CheckboxTree {...minProps} />);
 
-    expect(getByText('Genereic subcategory name 1')).toBeInTheDocument();
-    const checkbox = await getByTestId('expandable');
+    expect(getByText('Generic subcategory name 1')).toBeInTheDocument();
+    const checkbox = getByTestId('expandable');
 
     // Simulate click on expandable arrow
     fireEvent.click(checkbox);
