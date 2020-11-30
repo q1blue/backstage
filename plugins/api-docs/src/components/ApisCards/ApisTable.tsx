@@ -16,9 +16,9 @@
 
 import { ApiEntity } from '@backstage/catalog-model';
 import { Table, TableColumn } from '@backstage/core';
+import { EntityLink } from '@backstage/plugin-catalog';
 import React from 'react';
 import { ApiTypeTitle } from '../ApiDefinitionCard';
-import { EntityLink } from '../EntityLink';
 
 const columns: TableColumn<ApiEntity>[] = [
   {

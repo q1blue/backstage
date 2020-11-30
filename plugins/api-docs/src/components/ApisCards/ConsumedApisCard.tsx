@@ -21,9 +21,9 @@ import {
 } from '@backstage/catalog-model';
 import { EmptyState, InfoCard, Progress } from '@backstage/core';
 import React, { PropsWithChildren } from 'react';
-import { ApisTable } from './ApisTable';
 import { MissingConsumesApisEmptyState } from '../EmptyState';
 import { useRelatedEntities } from '../useRelatedEntities';
+import { ApisTable } from './ApisTable';
 
 const ApisCard = ({
   children,

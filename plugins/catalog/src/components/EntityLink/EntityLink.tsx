@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-export * from '@backstage/catalog-client';
-export { AboutCard } from './components/AboutCard';
-export { EntityLink } from './components/EntityLink';
-export { EntityPageLayout } from './components/EntityPageLayout';
-export { RelationsCard } from './components/RelationsCard';
-export { Router } from './components/Router';
-export { useEntityCompoundName } from './components/useEntityCompoundName';
-export { EntityContext, useEntity } from './hooks/useEntity';
-export { catalogApiRef, plugin } from './plugin';
-export * from './routes';
+import { Entity } from '@backstage/catalog-model';
+import { Link } from '@material-ui/core';
+import React, { PropsWithChildren } from 'react';
+import { generatePath, Link as RouterLink } from 'react-router-dom';
+import { entityRoute, entityRouteParams } from '../../routes';
+
+type Props = {
+  entity: Entity;
+};
+
+export const EntityLink = ({ entity, children }: PropsWithChildren<Props>) => {
+  return (
+    <Link
+      component={RouterLink}
+      to={generatePath(
+        `/catalog/${entityRoute.path}`,
+        entityRouteParams(entity),
+      )}
+    >
+      {children}
+    </Link>
+  );
+};

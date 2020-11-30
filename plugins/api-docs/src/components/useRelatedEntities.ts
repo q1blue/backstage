@@ -15,13 +15,12 @@
  */
 import { Entity } from '@backstage/catalog-model';
 import { useApi } from '@backstage/core';
-import { catalogApiRef } from '@backstage/plugin-catalog';
 import { useAsyncRetry } from 'react-use';
+import { catalogApiRef } from '@backstage/plugin-catalog';
 
-// TODO: Maybe this hook is interesting for others too?
 export function useRelatedEntities(
   entity: Entity,
-  type: string,
+  type?: string | string[],
 ): {
   entities: (Entity | undefined)[] | undefined;
   loading: boolean;
@@ -32,12 +31,19 @@ export function useRelatedEntities(
     (Entity | undefined)[]
   >(async () => {
     const relations =
-      entity.relations && entity.relations.filter(r => r.type === type);
+      entity.relations &&
+      entity.relations.filter(
+        r =>
+          !type ||
+          (typeof type === 'string' ? r.type === type : type.includes(r.type)),
+      );
 
     if (!relations) {
       return [];
     }
 
+    // TODO: It would be useful to have either a call that returns me the related
+    //  entities (graphql?) or a call that allows me to reachby multiple entity names?
     return await Promise.all(
       relations?.map(r => catalogApi.getEntityByName(r.target)),
     );

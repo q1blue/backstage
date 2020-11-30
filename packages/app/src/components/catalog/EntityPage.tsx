@@ -13,7 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ApiEntity, Entity } from '@backstage/catalog-model';
+import {
+  ApiEntity,
+  Entity,
+  RELATION_API_CONSUMED_BY,
+  RELATION_API_PROVIDED_BY,
+  RELATION_CONSUMES_API,
+  RELATION_PROVIDES_API,
+} from '@backstage/catalog-model';
 import { EmptyState } from '@backstage/core';
 import {
   ApiDefinitionCard,
@@ -25,6 +32,7 @@ import {
 import {
   AboutCard,
   EntityPageLayout,
+  RelationsCard,
   useEntity,
 } from '@backstage/plugin-catalog';
 import {
@@ -171,11 +179,24 @@ const ComponentOverviewContent = ({ entity }: { entity: Entity }) => (
 );
 
 const ComponentApisContent = ({ entity }: { entity: Entity }) => (
-  <Grid container spacing={3} alignItems="stretch">
-    <Grid item md={6}>
+  <Grid container alignItems="stretch">
+    <Grid item xs={12}>
+      <RelationsCard
+        entity={entity}
+        title="APIs"
+        relationTypes={[
+          RELATION_PROVIDES_API,
+          RELATION_CONSUMES_API,
+          RELATION_API_CONSUMED_BY,
+          RELATION_API_PROVIDED_BY,
+        ]}
+        depth={2}
+      />
+    </Grid>
+    <Grid item xs={12} md={6}>
       <ProvidedApisCard entity={entity} />
     </Grid>
-    <Grid item md={6}>
+    <Grid item xs={12} md={6}>
       <ConsumedApisCard entity={entity} />
     </Grid>
   </Grid>
@@ -301,6 +322,19 @@ const ApiOverviewContent = ({ entity }: { entity: Entity }) => (
   <Grid container spacing={3}>
     <Grid item md={6}>
       <AboutCard entity={entity} />
+    </Grid>
+    <Grid item xs={12} md={6}>
+      <RelationsCard
+        entity={entity}
+        title="Related Components & Services"
+        relationTypes={[
+          RELATION_PROVIDES_API,
+          RELATION_CONSUMES_API,
+          RELATION_API_CONSUMED_BY,
+          RELATION_API_PROVIDED_BY,
+        ]}
+        depth={1}
+      />
     </Grid>
     <Grid container item md={12}>
       <Grid item md={6}>

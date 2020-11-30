@@ -14,27 +14,28 @@
  * limitations under the License.
  */
 
-import { Entity } from '@backstage/catalog-model';
-import { entityRoute, entityRouteParams } from '@backstage/plugin-catalog';
-import { Link } from '@material-ui/core';
+import { InfoCard } from '@backstage/core';
 import React, { PropsWithChildren } from 'react';
-import { generatePath, Link as RouterLink } from 'react-router-dom';
 
 type Props = {
-  entity: Entity;
+  variant?: string;
+  title?: string;
+  noPadding?: boolean;
 };
 
-// TODO: Could be useful for others too, as part of the catalog plugin
-export const EntityLink = ({ entity, children }: PropsWithChildren<Props>) => {
+export const Card = ({
+  children,
+  title,
+  variant = 'gridItem',
+  noPadding,
+}: PropsWithChildren<Props>) => {
   return (
-    <Link
-      component={RouterLink}
-      to={generatePath(
-        `/catalog/${entityRoute.path}`,
-        entityRouteParams(entity),
-      )}
+    <InfoCard
+      variant={variant}
+      title={title ?? 'Relations'}
+      noPadding={noPadding}
     >
       {children}
-    </Link>
+    </InfoCard>
   );
 };

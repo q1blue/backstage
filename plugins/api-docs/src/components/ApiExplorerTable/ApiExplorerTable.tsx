@@ -22,11 +22,11 @@ import {
   TableState,
   useQueryParamState,
 } from '@backstage/core';
+import { EntityLink } from '@backstage/plugin-catalog';
 import { Chip } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import React from 'react';
 import { ApiTypeTitle } from '../ApiDefinitionCard';
-import { EntityLink } from '../EntityLink';
 
 const columns: TableColumn<Entity>[] = [
   {
