@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-import AsyncApi from '@kyma-project/asyncapi-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, fade } from '@material-ui/core/styles';
-import '@kyma-project/asyncapi-react/lib/styles/fiori.css';
+import '@asyncapi/web-component/lib/asyncapi-web-component';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -141,10 +140,20 @@ type Props = {
 
 export const AsyncApiDefinitionWidget = ({ definition }: Props) => {
   const classes = useStyles();
+  // lazy import for component
+  useEffect(() => {
+    import('@asyncapi/web-component/lib/asyncapi-web-component');
+  }, []);
+
+  // TODO: How to fix the typing? Can we contribute to @asyncapi/web-component to include a typings there:
+
+  // TODO: How to style the webcomponent? Right now it expects asyncapi.css to be in the assets folder.
+
+  // TODO: How do we apply our custom styling and inherit the material ui styles?
 
   return (
     <div className={classes.root}>
-      <AsyncApi schema={definition} />
+      <asyncapi-component schema={definition} cssImportPath="./asyncapi.css" />
     </div>
   );
 };
