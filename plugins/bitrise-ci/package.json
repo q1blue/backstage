@@ -20,11 +20,11 @@
     "clean": "backstage-cli clean"
   },
   "dependencies": {
-    "@backstage/catalog-model": "0.0.0-pre-202102261024",
-    "@backstage/core": "0.0.0-pre-202102261024",
-    "@backstage/plugin-catalog-react": "0.0.0-pre-202102261024",
-    "@backstage/test-utils": "0.0.0-pre-202102261024",
-    "@backstage/theme": "0.0.0-pre-202102261024",
+    "@backstage/catalog-model": "^0.7.2",
+    "@backstage/core": "^0.6.3",
+    "@backstage/plugin-catalog-react": "^0.1.0",
+    "@backstage/test-utils": "^0.1.8",
+    "@backstage/theme": "^0.2.3",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.45",
@@ -38,8 +38,8 @@
     "recharts": "^1.8.5"
   },
   "devDependencies": {
-    "@backstage/cli": "0.0.0-pre-202102261024",
-    "@backstage/dev-utils": "0.0.0-pre-202102261024",
+    "@backstage/cli": "^0.6.2",
+    "@backstage/dev-utils": "^0.1.12",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.4.1",
     "@testing-library/user-event": "^12.0.7",
