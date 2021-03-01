@@ -2,7 +2,7 @@
 
 Welcome to the bitrise-ci plugin!
 
-- View recent Bitrise Builds for a Bitise application
+- View recent Bitrise Builds for a Bitrise application
 - Download build artifacts
 
 ## Annotation
