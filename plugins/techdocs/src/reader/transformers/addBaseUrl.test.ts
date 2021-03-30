@@ -18,6 +18,8 @@ import { createTestShadowDom } from '../../test-utils';
 import { addBaseUrl } from '../transformers';
 import { TechDocsStorage } from '../../api';
 
+// TODO: Fix tests
+
 const DOC_STORAGE_URL = 'https://example-host.storage.googleapis.com';
 
 const techdocsStorageApi: TechDocsStorage = {

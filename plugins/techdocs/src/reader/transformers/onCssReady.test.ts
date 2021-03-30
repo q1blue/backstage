@@ -22,6 +22,8 @@ import {
 } from '../../test-utils';
 import { onCssReady } from '../transformers';
 
+// TODO: Fix tests
+
 const docStorageUrl: Promise<string> = Promise.resolve(
   'https://techdocs-mock-sites.storage.googleapis.com',
 );

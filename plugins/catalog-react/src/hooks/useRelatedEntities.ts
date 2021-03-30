@@ -13,14 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Entity } from '@backstage/catalog-model';
+import { Entity, EntityRelation } from '@backstage/catalog-model';
 import { useApi } from '@backstage/core';
 import { useAsync } from 'react-use';
 import { catalogApiRef } from '../api';
 
-export function useRelatedEntities(
+// TODO: Move to catalog model...
+export function getRelations(
   entity: Entity,
   { type, kind }: { type?: string; kind?: string },
+): EntityRelation[] {
+  if (!entity.relations) {
+    return [];
+  }
+
+  return entity.relations.filter(
+    r =>
+      (!type || r.type.toLowerCase() === type.toLowerCase()) &&
+      (!kind || r.target.kind.toLowerCase() === kind.toLowerCase()),
+  );
+}
+
+export function useRelatedEntities(
+  entity: Entity,
+  filter: { type?: string; kind?: string },
 ): {
   entities: Entity[] | undefined;
   loading: boolean;
@@ -28,17 +44,7 @@ export function useRelatedEntities(
 } {
   const catalogApi = useApi(catalogApiRef);
   const { loading, value: entities, error } = useAsync(async () => {
-    const relations =
-      entity.relations &&
-      entity.relations.filter(
-        r =>
-          (!type || r.type.toLowerCase() === type.toLowerCase()) &&
-          (!kind || r.target.kind.toLowerCase() === kind.toLowerCase()),
-      );
-
-    if (!relations) {
-      return [];
-    }
+    const relations = getRelations(entity, filter);
 
     // TODO: This code could be more efficient if there was an endpoint in the
     // backend that either returns the relations of entity (filtered by type)
@@ -50,7 +56,7 @@ export function useRelatedEntities(
     // Skip entities that where not found, for example if a relation references
     // an entity that doesn't exist.
     return results.filter(e => e) as Entity[];
-  }, [entity, type]);
+  }, [entity, filter]);
 
   return {
     entities,

@@ -14,58 +14,27 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Content, Page, useApi } from '@backstage/core';
+import { Content, Page } from '@backstage/core';
+import React from 'react';
+import { useTechDocsPage } from '../hooks';
 import { Reader } from './Reader';
-import { useAsync } from 'react-use';
 import { TechDocsPageHeader } from './TechDocsPageHeader';
-import { techdocsApiRef } from '../../api';
 
 export const TechDocsPage = () => {
-  const [documentReady, setDocumentReady] = useState<boolean>(false);
-  const { namespace, kind, name } = useParams();
-
-  const techdocsApi = useApi(techdocsApiRef);
-
-  const techdocsMetadataRequest = useAsync(() => {
-    if (documentReady) {
-      return techdocsApi.getTechDocsMetadata({ kind, namespace, name });
-    }
-
-    return Promise.resolve({ loading: true });
-  }, [kind, namespace, name, techdocsApi, documentReady]);
-
-  const entityMetadataRequest = useAsync(() => {
-    return techdocsApi.getEntityMetadata({ kind, namespace, name });
-  }, [kind, namespace, name, techdocsApi]);
-
-  const onReady = () => {
-    setDocumentReady(true);
-  };
+  const {
+    entityId,
+    loading,
+    page,
+    loadError,
+    syncError,
+    syncing,
+  } = useTechDocsPage();
 
   return (
     <Page themeId="documentation">
-      <TechDocsPageHeader
-        metadataRequest={{
-          techdocs: techdocsMetadataRequest,
-          entity: entityMetadataRequest,
-        }}
-        entityId={{
-          kind,
-          namespace,
-          name,
-        }}
-      />
+      <TechDocsPageHeader page={page} entityId={entityId} />
       <Content data-testid="techdocs-content">
-        <Reader
-          onReady={onReady}
-          entityId={{
-            kind,
-            namespace,
-            name,
-          }}
-        />
+        <Reader entityId={entityId} />
       </Content>
     </Page>
   );

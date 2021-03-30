@@ -13,21 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { EntityName } from '@backstage/catalog-model';
 import type { Transformer } from './index';
-import { TechDocsStorage } from '../../api';
 
-type AddBaseUrlOptions = {
-  techdocsStorageApi: TechDocsStorage;
-  entityId: EntityName;
-  path: string;
-};
-
-export const addBaseUrl = ({
-  techdocsStorageApi,
-  entityId,
-  path,
-}: AddBaseUrlOptions): Transformer => {
+export const addBaseUrl = ({ basePath }: { basePath: string }): Transformer => {
   return dom => {
     const updateDom = <T extends Element>(
       list: HTMLCollectionOf<T> | NodeListOf<T>,
@@ -36,12 +24,9 @@ export const addBaseUrl = ({
       Array.from(list)
         .filter(elem => !!elem.getAttribute(attributeName))
         .forEach(async (elem: T) => {
-          const elemAttribute = elem.getAttribute(attributeName);
-          if (!elemAttribute) return;
-          elem.setAttribute(
-            attributeName,
-            await techdocsStorageApi.getBaseUrl(elemAttribute, entityId, path),
-          );
+          const path = elem.getAttribute(attributeName);
+          if (!path) return;
+          elem.setAttribute(attributeName, new URL(path, basePath).toString());
         });
     };
 

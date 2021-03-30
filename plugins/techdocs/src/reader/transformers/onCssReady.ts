@@ -15,40 +15,31 @@
  */
 
 import type { Transformer } from './index';
+import { some } from 'lodash';
 
 type OnCssReadyOptions = {
-  docStorageUrl: Promise<string>;
-  onLoading: (dom: Element) => void;
+  selector: string;
+  expectedStyle: Partial<CSSStyleDeclaration>;
   onLoaded: (dom: Element) => void;
 };
 
 export const onCssReady = ({
-  docStorageUrl,
-  onLoading,
   onLoaded,
+  selector,
+  expectedStyle,
 }: OnCssReadyOptions): Transformer => {
   return dom => {
-    const cssPages = Array.from(
-      dom.querySelectorAll('head > link[rel="stylesheet"]'),
-    ).filter(async elem =>
-      elem.getAttribute('href')?.startsWith(await docStorageUrl),
-    );
+    function tryStylesheet() {
+      const element = dom.querySelector<HTMLElement>(selector);
 
-    let count = cssPages.length;
-
-    if (count > 0) {
-      onLoading(dom);
+      if (element && some(getComputedStyle(element), expectedStyle)) {
+        onLoaded(dom);
+      } else {
+        setTimeout(tryStylesheet, 1);
+      }
     }
 
-    cssPages.forEach(cssPage =>
-      cssPage.addEventListener('load', () => {
-        count -= 1;
-
-        if (count === 0) {
-          onLoaded(dom);
-        }
-      }),
-    );
+    tryStylesheet();
 
     return dom;
   };

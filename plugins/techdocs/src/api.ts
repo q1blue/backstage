@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import { createApiRef, DiscoveryApi, IdentityApi } from '@backstage/core';
+import { Entity, EntityName } from '@backstage/catalog-model';
 import { Config } from '@backstage/config';
-import { EntityName } from '@backstage/catalog-model';
-import { TechDocsMetadata } from './types';
+import { createApiRef, DiscoveryApi, IdentityApi } from '@backstage/core';
 import { NotFoundError } from '@backstage/errors';
+import { TechDocsMetadata } from './types';
 
 export const techdocsStorageApiRef = createApiRef<TechDocsStorageApi>({
   id: 'plugin.techdocs.storageservice',
@@ -30,19 +30,16 @@ export const techdocsApiRef = createApiRef<TechDocsApi>({
   description: 'Used to make requests towards techdocs API',
 });
 
+export type EntityMetadata = Entity & { locationMetadata?: Location };
+
 export interface TechDocsStorage {
   getEntityDocs(entityId: EntityName, path: string): Promise<string>;
   syncEntityDocs(entityId: EntityName): Promise<boolean>;
-  getBaseUrl(
-    oldBaseUrl: string,
-    entityId: EntityName,
-    path: string,
-  ): Promise<string>;
 }
 
 export interface TechDocs {
   getTechDocsMetadata(entityId: EntityName): Promise<TechDocsMetadata>;
-  getEntityMetadata(entityId: EntityName): Promise<string>;
+  getEntityMetadata(entityId: EntityName): Promise<EntityMetadata>;
 }
 
 /**
@@ -248,19 +245,5 @@ export class TechDocsStorageApi implements TechDocsStorage {
       default:
         return false;
     }
-  }
-
-  async getBaseUrl(
-    oldBaseUrl: string,
-    entityId: EntityName,
-    path: string,
-  ): Promise<string> {
-    const { kind, namespace, name } = entityId;
-
-    const apiOrigin = await this.getApiOrigin();
-    return new URL(
-      oldBaseUrl,
-      `${apiOrigin}/static/docs/${namespace}/${kind}/${name}/${path}`,
-    ).toString();
   }
 }

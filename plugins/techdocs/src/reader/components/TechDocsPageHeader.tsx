@@ -14,46 +14,49 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { AsyncState } from 'react-use/lib/useAsync';
+import {
+  ComponentEntity,
+  Entity,
+  EntityName,
+  Location,
+  parseEntityName,
+  RELATION_OWNED_BY,
+} from '@backstage/catalog-model';
+import { Header, HeaderLabel, useRouteRef } from '@backstage/core';
+import { EntityRefLink, EntityRefLinks } from '@backstage/plugin-catalog-react';
+import { getRelations } from '@backstage/plugin-catalog-react/src/hooks/useRelatedEntities';
 import CodeIcon from '@material-ui/icons/Code';
-import { EntityName, parseEntityName } from '@backstage/catalog-model';
-import { Header, HeaderLabel, Link, useRouteRef } from '@backstage/core';
-import { TechDocsMetadata } from '../../types';
-import { EntityRefLink, entityRouteRef } from '@backstage/plugin-catalog-react';
+import React from 'react';
 import { rootRouteRef } from '../../plugin';
+import { TechDocsMetadata } from '../../types';
 
 type TechDocsPageHeaderProps = {
   entityId: EntityName;
-  metadataRequest: {
-    entity: AsyncState<any>;
-    techdocs: AsyncState<TechDocsMetadata>;
+  page?: {
+    location?: Location;
+    entity: Entity;
+    techDocsMetadata: TechDocsMetadata;
   };
 };
 
 export const TechDocsPageHeader = ({
   entityId,
-  metadataRequest,
+  page,
 }: TechDocsPageHeaderProps) => {
-  const {
-    techdocs: techdocsMetadata,
-    entity: entityMetadata,
-  } = metadataRequest;
-
-  const { value: techdocsMetadataValues } = techdocsMetadata;
-  const { value: entityMetadataValues } = entityMetadata;
-
   const { name } = entityId;
-
+  const entity = page?.entity as ComponentEntity | undefined;
+  const location = page?.location;
   const { site_name: siteName, site_description: siteDescription } =
-    techdocsMetadataValues || {};
-
+    page?.techDocsMetadata || {};
   const {
-    locationMetadata,
     spec: { owner, lifecycle },
-  } = entityMetadataValues || { spec: {} };
+  } = entity || { spec: {} };
 
-  const componentLink = useRouteRef(entityRouteRef);
+  const ownedByRelations = entity
+    ? getRelations(entity, {
+        type: RELATION_OWNED_BY,
+      }).map(r => r.target)
+    : [];
 
   let ownerEntity;
   if (owner) {
@@ -67,9 +70,11 @@ export const TechDocsPageHeader = ({
       <HeaderLabel
         label="Component"
         value={
-          <Link style={{ color: '#fff' }} to={componentLink(entityId)}>
-            {name}
-          </Link>
+          <EntityRefLink
+            variant="inherit"
+            entityRef={entityId}
+            defaultKind="Component"
+          />
         }
       />
       {owner ? (
@@ -77,9 +82,9 @@ export const TechDocsPageHeader = ({
           label="Owner"
           value={
             ownerEntity ? (
-              <EntityRefLink
-                style={{ color: '#fff' }}
-                entityRef={ownerEntity}
+              <EntityRefLinks
+                variant="inherit"
+                entityRefs={ownedByRelations}
                 defaultKind="group"
               />
             ) : (
@@ -89,17 +94,11 @@ export const TechDocsPageHeader = ({
         />
       ) : null}
       {lifecycle ? <HeaderLabel label="Lifecycle" value={lifecycle} /> : null}
-      {locationMetadata &&
-      locationMetadata.type !== 'dir' &&
-      locationMetadata.type !== 'file' ? (
+      {location && location.type !== 'dir' && location.type !== 'file' ? (
         <HeaderLabel
           label=""
           value={
-            <a
-              href={locationMetadata.target}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={location.target} target="_blank" rel="noopener noreferrer">
               <CodeIcon style={{ marginTop: '-25px', fill: '#fff' }} />
             </a>
           }
