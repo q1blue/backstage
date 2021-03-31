@@ -17,15 +17,15 @@
 import React from 'react';
 import { Entity } from '@backstage/catalog-model';
 import { Reader } from './reader';
+import { useTechDocsPage } from './reader/hooks';
 
 export const EntityPageDocs = ({ entity }: { entity: Entity }) => {
-  return (
-    <Reader
-      entityId={{
-        kind: entity.kind,
-        namespace: entity.metadata.namespace ?? 'default',
-        name: entity.metadata.name,
-      }}
-    />
-  );
+  const entityId = {
+    kind: entity.kind,
+    namespace: entity.metadata.namespace ?? 'default',
+    name: entity.metadata.name,
+  };
+  const pageState = useTechDocsPage({ entityId });
+
+  return <Reader pageState={pageState} />;
 };

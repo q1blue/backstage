@@ -19,6 +19,8 @@ import { useMountedState } from 'react-use';
 import { Progress } from '@backstage/core';
 import { Typography } from '@material-ui/core';
 
+// TODO: Consider removing this as we have a different message now...
+
 const TechDocsProgressBar = () => {
   const isMounted = useMountedState();
   const [hasBeenDelayed, setHasBeenDelayed] = useState(false);

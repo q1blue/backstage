@@ -71,7 +71,7 @@ export const TechDocsPageHeader = ({
         label="Component"
         value={
           <EntityRefLink
-            variant="inherit"
+            color="inherit"
             entityRef={entityId}
             defaultKind="Component"
           />
@@ -83,7 +83,7 @@ export const TechDocsPageHeader = ({
           value={
             ownerEntity ? (
               <EntityRefLinks
-                variant="inherit"
+                color="inherit"
                 entityRefs={ownedByRelations}
                 defaultKind="group"
               />

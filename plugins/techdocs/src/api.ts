@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Entity, EntityName } from '@backstage/catalog-model';
+import { Entity, EntityName, Location } from '@backstage/catalog-model';
 import { Config } from '@backstage/config';
 import { createApiRef, DiscoveryApi, IdentityApi } from '@backstage/core';
 import { NotFoundError } from '@backstage/errors';
@@ -32,12 +32,16 @@ export const techdocsApiRef = createApiRef<TechDocsApi>({
 
 export type EntityMetadata = Entity & { locationMetadata?: Location };
 
-export interface TechDocsStorage {
+export interface TechDocsStorageApi {
   getEntityDocs(entityId: EntityName, path: string): Promise<string>;
   syncEntityDocs(entityId: EntityName): Promise<boolean>;
+  getApiOrigin(): Promise<string>;
+  getStorageUrl(): Promise<string>;
+  getBuilder(): Promise<string>;
 }
 
-export interface TechDocs {
+export interface TechDocsApi {
+  getApiOrigin(): Promise<string>;
   getTechDocsMetadata(entityId: EntityName): Promise<TechDocsMetadata>;
   getEntityMetadata(entityId: EntityName): Promise<EntityMetadata>;
 }
@@ -47,7 +51,7 @@ export interface TechDocs {
  *
  * @property {string} apiOrigin Set to techdocs.requestUrl as the URL for techdocs-backend API
  */
-export class TechDocsApi implements TechDocs {
+export class TechDocsClient implements TechDocsApi {
   public configApi: Config;
   public discoveryApi: DiscoveryApi;
   public identityApi: IdentityApi;
@@ -66,7 +70,7 @@ export class TechDocsApi implements TechDocs {
     this.identityApi = identityApi;
   }
 
-  async getApiOrigin() {
+  async getApiOrigin(): Promise<string> {
     return (
       this.configApi.getOptionalString('techdocs.requestUrl') ??
       (await this.discoveryApi.getBaseUrl('techdocs'))
@@ -82,7 +86,7 @@ export class TechDocsApi implements TechDocs {
    *
    * @param {EntityName} entityId Object containing entity data like name, namespace, etc.
    */
-  async getTechDocsMetadata(entityId: EntityName) {
+  async getTechDocsMetadata(entityId: EntityName): Promise<TechDocsMetadata> {
     const { kind, namespace, name } = entityId;
 
     const apiOrigin = await this.getApiOrigin();
@@ -105,7 +109,7 @@ export class TechDocsApi implements TechDocs {
    *
    * @param {EntityName} entityId Object containing entity data like name, namespace, etc.
    */
-  async getEntityMetadata(entityId: EntityName) {
+  async getEntityMetadata(entityId: EntityName): Promise<EntityMetadata> {
     const { kind, namespace, name } = entityId;
 
     const apiOrigin = await this.getApiOrigin();
@@ -126,7 +130,7 @@ export class TechDocsApi implements TechDocs {
  *
  * @property {string} apiOrigin Set to techdocs.requestUrl as the URL for techdocs-backend API
  */
-export class TechDocsStorageApi implements TechDocsStorage {
+export class TechDocsStorageClient implements TechDocsStorageApi {
   public configApi: Config;
   public discoveryApi: DiscoveryApi;
   public identityApi: IdentityApi;
@@ -145,21 +149,21 @@ export class TechDocsStorageApi implements TechDocsStorage {
     this.identityApi = identityApi;
   }
 
-  async getApiOrigin() {
+  async getApiOrigin(): Promise<string> {
     return (
       this.configApi.getOptionalString('techdocs.requestUrl') ??
       (await this.discoveryApi.getBaseUrl('techdocs'))
     );
   }
 
-  async getStorageUrl() {
+  async getStorageUrl(): Promise<string> {
     return (
       this.configApi.getOptionalString('techdocs.storageUrl') ??
       `${await this.discoveryApi.getBaseUrl('techdocs')}/static/docs`
     );
   }
 
-  async getBuilder() {
+  async getBuilder(): Promise<string> {
     return this.configApi.getString('techdocs.builder');
   }
 
@@ -171,7 +175,7 @@ export class TechDocsStorageApi implements TechDocsStorage {
    * @returns {string} HTML content of the docs page as string
    * @throws {Error} Throws error when the page is not found.
    */
-  async getEntityDocs(entityId: EntityName, path: string) {
+  async getEntityDocs(entityId: EntityName, path: string): Promise<string> {
     const { kind, namespace, name } = entityId;
 
     const storageUrl = await this.getStorageUrl();
@@ -214,7 +218,7 @@ export class TechDocsStorageApi implements TechDocsStorage {
    * @returns {boolean} Whether documents are currently synchronized to newest version
    * @throws {Error} Throws error on error from sync endpoint in Techdocs Backend
    */
-  async syncEntityDocs(entityId: EntityName) {
+  async syncEntityDocs(entityId: EntityName): Promise<boolean> {
     const { kind, namespace, name } = entityId;
 
     const apiOrigin = await this.getApiOrigin();
@@ -235,9 +239,9 @@ export class TechDocsStorageApi implements TechDocsStorage {
       case 404:
         throw new NotFoundError((await request.json()).error);
       case 200:
-      case 201:
       case 304:
         return true;
+      case 201:
       // for timeout and misc errors, handle without error to allow viewing older docs
       // if older docs not available,
       // Reader will show 404 error coming from getEntityDocs

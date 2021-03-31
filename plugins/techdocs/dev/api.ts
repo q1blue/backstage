@@ -16,10 +16,10 @@
 import { DiscoveryApi, IdentityApi } from '@backstage/core';
 import { Config } from '@backstage/config';
 import { EntityName } from '@backstage/catalog-model';
-import { TechDocsStorage } from '../src/api';
+import { TechDocsStorageApi } from '../src/api';
 import { NotFoundError } from '@backstage/errors';
 
-export class TechDocsDevStorageApi implements TechDocsStorage {
+export class TechDocsDevStorageApi implements TechDocsStorageApi {
   public configApi: Config;
   public discoveryApi: DiscoveryApi;
   public identityApi: IdentityApi;

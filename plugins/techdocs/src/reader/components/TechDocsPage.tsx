@@ -16,25 +16,21 @@
 
 import { Content, Page } from '@backstage/core';
 import React from 'react';
+import { useParams } from 'react-router';
 import { useTechDocsPage } from '../hooks';
 import { Reader } from './Reader';
 import { TechDocsPageHeader } from './TechDocsPageHeader';
 
 export const TechDocsPage = () => {
-  const {
-    entityId,
-    loading,
-    page,
-    loadError,
-    syncError,
-    syncing,
-  } = useTechDocsPage();
+  const { namespace, kind, name } = useParams();
+  const entityId = { namespace, kind, name };
+  const pageState = useTechDocsPage({ entityId });
 
   return (
     <Page themeId="documentation">
-      <TechDocsPageHeader page={page} entityId={entityId} />
+      <TechDocsPageHeader page={pageState.page} entityId={entityId} />
       <Content data-testid="techdocs-content">
-        <Reader entityId={entityId} />
+        <Reader pageState={pageState} />
       </Content>
     </Page>
   );

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { BackstageTheme } from '@backstage/theme';
 import { useTheme } from '@material-ui/core';
 import React, { useEffect, useRef, useState } from 'react';
@@ -223,7 +224,17 @@ export const MkDocsRenderer = ({
         },
       }),
     ]);
-  }, [rawPage, basePath, shadowDomRef]);
+  }, [
+    rawPage,
+    basePath,
+    shadowDomRef,
+    navigate,
+    theme.palette.background.default,
+    theme.palette.background.paper,
+    theme.palette.primary.main,
+    theme.palette.text.primary,
+    theme.typography.fontFamily,
+  ]);
 
   return <div ref={shadowDomRef} />;
 };

@@ -15,7 +15,7 @@
  */
 
 import type { Transformer } from './index';
-import { some } from 'lodash';
+import { isMatch } from 'lodash';
 
 type OnCssReadyOptions = {
   selector: string;
@@ -32,7 +32,7 @@ export const onCssReady = ({
     function tryStylesheet() {
       const element = dom.querySelector<HTMLElement>(selector);
 
-      if (element && some(getComputedStyle(element), expectedStyle)) {
+      if (element && isMatch(getComputedStyle(element), expectedStyle)) {
         onLoaded(dom);
       } else {
         setTimeout(tryStylesheet, 1);
