@@ -67,7 +67,7 @@ export class DefaultTechDocsCollator implements DocumentCollator {
     this.parallelismLimit = parallelismLimit;
   }
 
-  async execute() {
+  async *execute() {
     const limit = pLimit(this.parallelismLimit);
     const techDocsBaseUrl = await this.discovery.getBaseUrl('techdocs');
     const entities = await this.catalogClient.getEntities({
@@ -82,6 +82,7 @@ export class DefaultTechDocsCollator implements DocumentCollator {
         'relations',
       ],
     });
+
     const docPromises = entities.items
       .filter(it => it.metadata?.annotations?.['backstage.io/techdocs-ref'])
       .map((entity: Entity) =>
@@ -126,7 +127,7 @@ export class DefaultTechDocsCollator implements DocumentCollator {
           },
         ),
       );
-    return (await Promise.all(docPromises)).flat();
+    yield* (await Promise.all(docPromises)).flat();
   }
 
   protected applyArgsToFormat(

@@ -63,7 +63,7 @@ export interface DocumentCollator {
    * index name by Search Engines.
    */
   readonly type: string;
-  execute(): Promise<IndexableDocument[]>;
+  execute(): AsyncGenerator<IndexableDocument>;
 }
 
 /**
@@ -77,7 +77,9 @@ export interface DocumentDecorator {
    * all document/index types.
    */
   readonly types?: string[];
-  execute(documents: IndexableDocument[]): Promise<IndexableDocument[]>;
+  execute(
+    documents: AsyncGenerator<IndexableDocument>,
+  ): AsyncGenerator<IndexableDocument>;
 }
 
 /**
@@ -100,7 +102,10 @@ export interface SearchEngine {
   /**
    * Add the given documents to the SearchEngine index of the given type.
    */
-  index(type: string, documents: IndexableDocument[]): Promise<void>;
+  index(
+    type: string,
+    documents: AsyncGenerator<IndexableDocument>,
+  ): Promise<void>;
 
   /**
    * Perform a search query against the SearchEngine.

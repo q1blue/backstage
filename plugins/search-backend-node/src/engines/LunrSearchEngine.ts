@@ -114,27 +114,32 @@ export class LunrSearchEngine implements SearchEngine {
     this.translator = translator;
   }
 
-  async index(type: string, documents: IndexableDocument[]): Promise<void> {
+  async index(
+    type: string,
+    documents: AsyncGenerator<IndexableDocument>,
+  ): Promise<void> {
     const lunrBuilder = new lunr.Builder();
 
     lunrBuilder.pipeline.add(lunr.trimmer, lunr.stopWordFilter, lunr.stemmer);
     lunrBuilder.searchPipeline.add(lunr.stemmer);
 
-    // Make this lunr index aware of all relevant fields.
-    Object.keys(documents[0]).forEach(field => {
-      lunrBuilder.field(field);
-    });
+    for await (const document of documents) {
+      if (lunrBuilder.documentCount === 0) {
+        // Make this lunr index aware of all relevant fields.
+        Object.keys(document).forEach(field => {
+          lunrBuilder.field(field);
+        });
 
-    // Set "location" field as reference field
-    lunrBuilder.ref('location');
+        // Set "location" field as reference field
+        lunrBuilder.ref('location');
+      }
 
-    documents.forEach((document: IndexableDocument) => {
       // Add document to Lunar index
       lunrBuilder.add(document);
       // Store documents in memory to be able to look up document using the ref during query time
       // This is not how you should implement your SearchEngine implementation! Do not copy!
       this.docStore[document.location] = document;
-    });
+    }
 
     // "Rotate" the index by simply overwriting any existing index of the same name.
     this.lunrIndices[type] = lunrBuilder.build();

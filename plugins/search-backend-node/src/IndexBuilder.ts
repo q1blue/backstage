@@ -109,10 +109,10 @@ export class IndexBuilder {
         this.logger.debug(
           `Collating documents for ${type} via ${this.collators[type].collate.constructor.name}`,
         );
-        let documents: IndexableDocument[];
+        let documents: AsyncGenerator<IndexableDocument>;
 
         try {
-          documents = await this.collators[type].collate.execute();
+          documents = this.collators[type].collate.execute();
         } catch (e) {
           this.logger.error(
             `Collating documents for ${type} via ${this.collators[type].collate.constructor.name} failed: ${e}`,
@@ -125,7 +125,7 @@ export class IndexBuilder {
             `Decorating ${type} documents via ${decorators[i].constructor.name}`,
           );
           try {
-            documents = await decorators[i].execute(documents);
+            documents = decorators[i].execute(documents);
           } catch (e) {
             this.logger.error(
               `Decorating ${type} documents via ${decorators[i].constructor.name} failed: ${e}`,
@@ -134,10 +134,12 @@ export class IndexBuilder {
           }
         }
 
-        if (!documents || documents.length === 0) {
+        // TODO: This kind of check won't be possible anymore. But could be
+        // solved on the level of the search engine.
+        /* if (!documents || documents.length === 0) {
           this.logger.debug(`No documents for type "${type}" to index`);
           return;
-        }
+        }*/
 
         // pushing documents to index to a configured search engine.
         await this.searchEngine.index(type, documents);
