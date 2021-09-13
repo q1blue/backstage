@@ -14,18 +14,70 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import {
-  HomePageRandomJoke,
   ComponentAccordion,
-  ComponentTabs,
   ComponentTab,
+  ComponentTabs,
+  HomePageRandomJoke,
 } from '@backstage/plugin-home';
 import { HomePageSearchBar } from '@backstage/plugin-search';
+import Grid from '@material-ui/core/Grid';
+import {
+  Document,
+  Page,
+  StyleSheet,
+  Text,
+  usePDF,
+  View,
+} from '@react-pdf/renderer';
+import React, { useRef } from 'react';
+import { useAsync } from 'react-use';
+
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'row',
+    backgroundColor: '#E4E4E4',
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+  },
+});
+
+// Create Document Component
+const MyDocument = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>Section #1</Text>
+      </View>
+      <View style={styles.section}>
+        <Text>Section #2</Text>
+      </View>
+    </Page>
+  </Document>
+);
+
+const Test = () => {
+  const [{ loading, blob }] = usePDF({ document: <MyDocument /> });
+
+  const iframeRef = useRef<any>();
+
+  useAsync(async () => {
+    if (!loading && iframeRef.current) {
+      iframeRef.current.src = await blob?.text();
+    }
+  }, [iframeRef, loading, blob]);
+
+  return <iframe title="asdf" ref={iframeRef} />;
+};
 
 export const HomePage = () => (
   <Grid container spacing={3}>
+    <Grid item xs={12}>
+      <Test />
+    </Grid>
     <Grid item xs={12}>
       <HomePageSearchBar />
     </Grid>
