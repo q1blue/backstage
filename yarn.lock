@@ -8293,8 +8293,8 @@ __metadata:
   linkType: hard
 
 "@codemirror/language@npm:^6.0.0":
-  version: 6.3.0
-  resolution: "@codemirror/language@npm:6.3.0"
+  version: 6.3.2
+  resolution: "@codemirror/language@npm:6.3.2"
   dependencies:
     "@codemirror/state": ^6.0.0
     "@codemirror/view": ^6.0.0
@@ -8302,16 +8302,16 @@ __metadata:
     "@lezer/highlight": ^1.0.0
     "@lezer/lr": ^1.0.0
     style-mod: ^4.0.0
-  checksum: 996d6aad1a4cfb455f3459951d5ecfb67ff5240cc29397b3b801e569fcda24f87364aa7e42b63e85ecf62af80eaecd01258303dbf5b5f0b1eba31daa9a5bd258
+  checksum: b70ed9b85d0bea79181c86e88a1f5c0bada30680ee1fe6a68efc01bc037c3d14f94a83602fc46cc4b4393589605ef7e986ed5174443502f3365dd61f883894fa
   languageName: node
   linkType: hard
 
 "@codemirror/legacy-modes@npm:^6.1.0":
-  version: 6.2.0
-  resolution: "@codemirror/legacy-modes@npm:6.2.0"
+  version: 6.3.1
+  resolution: "@codemirror/legacy-modes@npm:6.3.1"
   dependencies:
     "@codemirror/language": ^6.0.0
-  checksum: c4449ad4e9b80fad982956ace705af5e21cd8c8bb248930bcb394ec019babf1a7b23e1e2894428b67d28a0c5bee99592320673690d19039392ddbc77075ef132
+  checksum: 9065e521bf14e33856e9d3ea114d7b352adf341a8b8d4fb94b4c866189336a32b5ed42ffc20f5d2fa3c839f1bdf29a868bbf9b74c105ed83fa9fd6080e0429e9
   languageName: node
   linkType: hard
 
@@ -8344,6 +8344,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@codemirror/state@npm:^6.1.4":
+  version: 6.1.4
+  resolution: "@codemirror/state@npm:6.1.4"
+  checksum: ef6bc495d3b89d2f0202b6b1c0fc3e3610f8d815f4ca91f86153d6093c9b93ddbe2cfb787802d07514a7114f0b200cf2eeb54c1cd34d7e00eff774ecea97d845
+  languageName: node
+  linkType: hard
+
 "@codemirror/theme-one-dark@npm:^6.0.0":
   version: 6.1.0
   resolution: "@codemirror/theme-one-dark@npm:6.1.0"
@@ -8357,13 +8364,13 @@ __metadata:
   linkType: hard
 
 "@codemirror/view@npm:^6.0.0":
-  version: 6.4.0
-  resolution: "@codemirror/view@npm:6.4.0"
+  version: 6.7.1
+  resolution: "@codemirror/view@npm:6.7.1"
   dependencies:
-    "@codemirror/state": ^6.0.0
+    "@codemirror/state": ^6.1.4
     style-mod: ^4.0.0
     w3c-keyname: ^2.2.4
-  checksum: 57ed7d9d51907f1ea549a2a158872fb7affa6cdff72e29e214f8437b7142ea2a2431ac3c780cbc0187dfff7cb5fd1055a45a887ea9b8c2a09d8430c60ebe9083
+  checksum: 75a5846d61e63027e9bf1dfd0b507932934cb7650b7959c1191e68b161eb1756e9773f964c4331970b51864aef8f7954bc5cc8fdb51b0f6533de6c20568833ed
   languageName: node
   linkType: hard
 
