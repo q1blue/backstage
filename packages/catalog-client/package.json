@@ -32,7 +32,7 @@
     "clean": "backstage-cli package clean"
   },
   "dependencies": {
-    "@backstage/catalog-model": "workspace:^",
+    "@backstage/catalog-model": "0.1.1",
     "@backstage/errors": "workspace:^",
     "cross-fetch": "^3.1.5"
   },
