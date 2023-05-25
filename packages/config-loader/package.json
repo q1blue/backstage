@@ -35,7 +35,7 @@
   "dependencies": {
     "@backstage/cli-common": "workspace:^",
     "@backstage/config": "workspace:^",
-    "@backstage/errors": "workspace:^",
+    "@backstage/errors": "0.1.1",
     "@backstage/types": "workspace:^",
     "@types/json-schema": "^7.0.6",
     "ajv": "^8.10.0",
