@@ -32,11 +32,11 @@
     "clean": "backstage-cli package clean"
   },
   "dependencies": {
-    "@backstage/catalog-model": "workspace:^",
+    "@backstage/catalog-model": "0.1.1",
     "@backstage/config": "workspace:^",
     "@backstage/core-components": "workspace:^",
     "@backstage/core-plugin-api": "workspace:^",
-    "@backstage/plugin-cost-insights-common": "workspace:^",
+    "@backstage/plugin-cost-insights-common": "0.1.0",
     "@backstage/theme": "workspace:^",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
@@ -45,11 +45,11 @@
     "@types/recharts": "^1.8.14",
     "classnames": "^2.2.6",
     "history": "^5.0.0",
-    "luxon": "^3.0.0",
+    "luxon": "^3.2.1",
     "pluralize": "^8.0.0",
     "qs": "^6.9.4",
     "react-use": "^17.2.4",
-    "recharts": "^2.0.0",
+    "recharts": "^2.3.0",
     "regression": "^2.0.1",
     "yup": "^0.32.9"
   },
