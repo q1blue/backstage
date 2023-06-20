@@ -35,7 +35,7 @@
   "dependencies": {
     "@backstage/config": "workspace:^",
     "@backstage/types": "workspace:^",
-    "@backstage/version-bridge": "workspace:^",
+    "@backstage/version-bridge": "0.1.0",
     "history": "^5.0.0",
     "prop-types": "^15.7.2",
     "zen-observable": "^0.8.15"
