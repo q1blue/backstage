@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@backstage/plugin-catalog-common": "workspace:^",
-    "@backstage/plugin-permission-common": "workspace:^"
+    "@backstage/plugin-permission-common": "0.1.0"
   },
   "devDependencies": {
     "@backstage/cli": "workspace:^"
