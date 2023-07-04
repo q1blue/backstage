@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@backstage/config": "workspace:^",
-    "@backstage/core-components": "workspace:^",
+    "@backstage/core-components": "0.1.0",
     "@backstage/core-plugin-api": "workspace:^",
     "@backstage/errors": "workspace:^",
     "@backstage/theme": "workspace:^",
