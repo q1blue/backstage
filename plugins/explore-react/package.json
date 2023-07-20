@@ -32,7 +32,7 @@
     "start": "backstage-cli package start"
   },
   "dependencies": {
-    "@backstage/core-plugin-api": "workspace:^"
+    "@backstage/core-plugin-api": "0.1.0"
   },
   "devDependencies": {
     "@backstage/cli": "workspace:^",
