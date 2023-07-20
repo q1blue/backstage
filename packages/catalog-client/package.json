@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@backstage/catalog-model": "workspace:^",
-    "@backstage/errors": "workspace:^",
+    "@backstage/errors": "0.1.1",
     "cross-fetch": "^3.1.5"
   },
   "devDependencies": {
