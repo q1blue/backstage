@@ -32,7 +32,7 @@
     "start": "yarn nodemon --"
   },
   "dependencies": {
-    "@backstage/cli-common": "workspace:^",
+    "@backstage/cli-common": "0.1.1",
     "chalk": "^4.0.0",
     "commander": "^9.1.0",
     "fs-extra": "10.1.0",
