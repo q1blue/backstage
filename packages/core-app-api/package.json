@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "@backstage/config": "workspace:^",
-    "@backstage/core-plugin-api": "workspace:^",
+    "@backstage/core-plugin-api": "0.1.0",
     "@backstage/types": "workspace:^",
-    "@backstage/version-bridge": "workspace:^",
+    "@backstage/version-bridge": "0.1.0",
     "@types/prop-types": "^15.7.3",
     "prop-types": "^15.7.2",
     "react-use": "^17.2.4",
