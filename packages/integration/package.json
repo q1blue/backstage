@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@azure/identity": "^3.2.1",
-    "@backstage/config": "workspace:^",
+    "@backstage/config": "0.1.1",
     "@backstage/errors": "workspace:^",
     "@octokit/auth-app": "^4.0.0",
     "@octokit/rest": "^19.0.3",
