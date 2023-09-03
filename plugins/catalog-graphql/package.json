@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0",
-    "@apollo/server": "^4.0.0",
+    "@apollo/server": "^4.9.3",
     "@backstage/catalog-model": "workspace:^",
     "@backstage/config": "workspace:^",
     "@backstage/types": "workspace:^",
