@@ -41,9 +41,9 @@
     "url": "https://github.com/backstage/backstage/issues"
   },
   "dependencies": {
-    "@backstage/config": "workspace:^",
+    "@backstage/config": "0.1.1",
     "@backstage/errors": "workspace:^",
-    "@backstage/types": "workspace:^",
+    "@backstage/types": "0.1.1",
     "cross-fetch": "^3.1.5",
     "uuid": "^8.0.0",
     "zod": "^3.21.4"
