@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "@backstage/catalog-model": "workspace:^",
-    "@backstage/plugin-permission-common": "workspace:^",
-    "@backstage/types": "workspace:^"
+    "@backstage/plugin-permission-common": "0.1.0",
+    "@backstage/types": "0.1.1"
   },
   "devDependencies": {
     "@backstage/cli": "workspace:^"
