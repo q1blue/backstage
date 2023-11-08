@@ -16610,11 +16610,11 @@ __metadata:
   linkType: hard
 
 "@types/color@npm:^3.0.1":
-  version: 3.0.3
-  resolution: "@types/color@npm:3.0.3"
+  version: 3.0.6
+  resolution: "@types/color@npm:3.0.6"
   dependencies:
     "@types/color-convert": "*"
-  checksum: 4a54a6eca687b1f19d393c6c44e292009e913fa2377b5b815d1cd04470131087d7a799718d9e66a970f43e6ba16e7056a5b40b49d2d0d1d0f1530aff23864528
+  checksum: 0f16dcf4e202896d5425019c44a1f99713fca998052ab2fd836cdd38048398a0caf5b79a2efe560e41fca4b9401e8d8f6f02ed541cfea30cca3a8cb1b50b80f7
   languageName: node
   linkType: hard
 
