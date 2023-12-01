@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@backstage/config": "workspace:^",
-    "@backstage/core-plugin-api": "workspace:^",
+    "@backstage/core-plugin-api": "0.1.0",
     "@backstage/types": "workspace:^",
     "@backstage/version-bridge": "workspace:^",
     "@types/prop-types": "^15.7.3",
