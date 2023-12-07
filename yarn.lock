@@ -16862,9 +16862,9 @@ __metadata:
   linkType: hard
 
 "@types/diff@npm:^5.0.0":
-  version: 5.0.3
-  resolution: "@types/diff@npm:5.0.3"
-  checksum: d8a7d4de12f1aba0bd0c17b0b0d1e45c83824d3d6cc65763fbad371cd8315361a7e16fbae3f260a83bfdf30cebe1c876b42cec4518698055bc430fb09db1cbc8
+  version: 5.0.9
+  resolution: "@types/diff@npm:5.0.9"
+  checksum: fb5cb6d6407e3ebcd8883bdc9f9124b57ebc04720cfb605afc5f839f9a71878ccf895da66b09d5d8df25e684cfe57a6f6f4bf65f87ccc0ce0b58a18b1f3ce5b0
   languageName: node
   linkType: hard
 
