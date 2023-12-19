@@ -16976,12 +16976,12 @@ __metadata:
   linkType: hard
 
 "@types/express-xml-bodyparser@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@types/express-xml-bodyparser@npm:0.3.2"
+  version: 0.3.5
+  resolution: "@types/express-xml-bodyparser@npm:0.3.5"
   dependencies:
     "@types/express": "*"
     "@types/xml2js": "*"
-  checksum: 5d40669bf8b1f031c405e7172f12ecf53ccff5a35a7d08a7824a79f5a33bf450204bc1fa4c5bc618e32c9826dbf81170118f9aa6db7d0f2fa007ddc59e21929f
+  checksum: 1038dcd0a92b88b1a33c9a8f3dd2f7df8f28b1db256acda6eafe76f3bc22ed03df84f8f797f00c04fc2efaeef041868f24911cf387b5d35f5615a333a3230a76
   languageName: node
   linkType: hard
 
