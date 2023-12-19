@@ -17142,9 +17142,9 @@ __metadata:
   linkType: hard
 
 "@types/is-glob@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@types/is-glob@npm:4.0.2"
-  checksum: 50b0a52b6d179781b36bfce35155e1e0dc66b62e2943153d7d7c7079c40ba6236528a254de8be6c52ff9a7a351996887802efd7fd763da3e2121315e4ffe2edf
+  version: 4.0.4
+  resolution: "@types/is-glob@npm:4.0.4"
+  checksum: c790125e2d133d15c9783f6468995841cb06b5634b5c7b30aa32d23129f19d7dc271ec1a904bea4ca1e6a5ba19218a6602753d558f343b4fb8402fed25d17219
   languageName: node
   linkType: hard
 
