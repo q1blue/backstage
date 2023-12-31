@@ -17263,11 +17263,11 @@ __metadata:
   linkType: hard
 
 "@types/json-schema-merge-allof@npm:^0.6.0":
-  version: 0.6.1
-  resolution: "@types/json-schema-merge-allof@npm:0.6.1"
+  version: 0.6.5
+  resolution: "@types/json-schema-merge-allof@npm:0.6.5"
   dependencies:
     "@types/json-schema": "*"
-  checksum: 4d3648e9bf6f554f09c28955ea44b9d98c25e17e1aeb0fa3d62ea06729ec0ef16ca1b2bf1b7e12d86a6a3ea72a8eac50f34adca50984bcb9007a67b2fe9eb82b
+  checksum: 704806bce36c830b971bcc26415d2a4c4102482808bf6aef343dd4c062678f7e69e537ffebf4fbb389e568e4056cab9259b2b6f06a988c8676d90da37bbbc4c4
   languageName: node
   linkType: hard
 
