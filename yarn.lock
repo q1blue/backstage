@@ -17617,13 +17617,13 @@ __metadata:
   linkType: hard
 
 "@types/passport-github2@npm:^1.2.4":
-  version: 1.2.5
-  resolution: "@types/passport-github2@npm:1.2.5"
+  version: 1.2.9
+  resolution: "@types/passport-github2@npm:1.2.9"
   dependencies:
     "@types/express": "*"
     "@types/passport": "*"
     "@types/passport-oauth2": "*"
-  checksum: a4f1851edb91a2502136b7e76dd10fd3c52aebec938ff21ffa2ade40b1f62d0e7f65991c80589f5cfa40b6cba04bf0b8ea46db6942975bf5918fa4690f681235
+  checksum: 375b16d5ab80ff0601a56abc1a2ec1eadda0a8f38bef9c5d7406b6141751a10f6bb565890459a27ecbcb9a622771250fd5539e0842ce1b205f68dc4c3d83c235
   languageName: node
   linkType: hard
 
