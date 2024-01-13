@@ -17639,11 +17639,11 @@ __metadata:
   linkType: hard
 
 "@types/passport-microsoft@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@types/passport-microsoft@npm:1.0.0"
+  version: 1.0.3
+  resolution: "@types/passport-microsoft@npm:1.0.3"
   dependencies:
     "@types/passport-oauth2": "*"
-  checksum: d7c8b439b18cddcf707ea0c575748ecb344b6fb3c78a847aaad83246abf081c8b485efa86a3788cd5f49f4ca84a1444d813697a433fab9d04f35fb67d628cb23
+  checksum: 68e9204e90b4a195a1476cfc966d5165febcbb60948a9e98e5dab66f9080a69a2d5f76473a09aed26e00e776038ae63852e44889adb6e45a1851365ca10e5060
   languageName: node
   linkType: hard
 
