@@ -18015,11 +18015,11 @@ __metadata:
   linkType: hard
 
 "@types/serve-handler@npm:^6.1.0":
-  version: 6.1.1
-  resolution: "@types/serve-handler@npm:6.1.1"
+  version: 6.1.4
+  resolution: "@types/serve-handler@npm:6.1.4"
   dependencies:
     "@types/node": "*"
-  checksum: f519f83b18d7dea80f188f387a56dfe30fe944196849c470902fabf9db344c083c470f67e3362ad3f2294512950bc55924282c5c7a911ec8d507c37c6861d8ce
+  checksum: 47aac3d609b904d20cedd894889e8c148b87e354613b1eaf3eb96fbb0de61ac1507114301e74ab9381cdf439046d4425e357b7fed78907ccceb85ecd4879bc40
   languageName: node
   linkType: hard
 
