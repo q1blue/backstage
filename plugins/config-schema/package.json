@@ -23,9 +23,9 @@
     "clean": "backstage-cli package clean"
   },
   "dependencies": {
-    "@backstage/config": "workspace:^",
-    "@backstage/core-components": "workspace:^",
-    "@backstage/core-plugin-api": "workspace:^",
+    "@backstage/config": "0.1.1",
+    "@backstage/core-components": "0.1.0",
+    "@backstage/core-plugin-api": "0.1.0",
     "@backstage/errors": "workspace:^",
     "@backstage/theme": "workspace:^",
     "@backstage/types": "workspace:^",
