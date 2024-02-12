@@ -45,7 +45,7 @@
     "start": "backstage-cli package start"
   },
   "dependencies": {
-    "@backstage/config": "workspace:^",
+    "@backstage/config": "0.1.1",
     "@backstage/types": "workspace:^",
     "@backstage/version-bridge": "workspace:^",
     "@types/react": "^16.13.1 || ^17.0.0",
