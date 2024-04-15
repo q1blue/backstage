@@ -34,7 +34,7 @@
     "@backstage/cli-common": "workspace:^",
     "@backstage/cli-node": "workspace:^",
     "@backstage/config": "workspace:^",
-    "@backstage/config-loader": "workspace:^",
+    "@backstage/config-loader": "0.1.1",
     "@backstage/errors": "workspace:^",
     "@backstage/eslint-plugin": "workspace:^",
     "@backstage/integration": "workspace:^",
