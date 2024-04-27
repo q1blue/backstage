@@ -17807,11 +17807,11 @@ __metadata:
   linkType: hard
 
 "@types/react-sparklines@npm:^1.7.0":
-  version: 1.7.2
-  resolution: "@types/react-sparklines@npm:1.7.2"
+  version: 1.7.5
+  resolution: "@types/react-sparklines@npm:1.7.5"
   dependencies:
     "@types/react": "*"
-  checksum: e0e8479c256731c3fe9405a5d3061f81838f8708bc585203afa89ff81f266f06f5b497b1db77e6a488d6073de623c4093afd9cbf3626bb7c89f996632749c281
+  checksum: e79755fb1ed504d36ca0b6aec4e7ef54eba30448a27c275ef56b55132c37761c11d693f885e248e2e8ba80f294bf9475e7d0e15ce5f5bb2a2219f07f18488409
   languageName: node
   linkType: hard
 
