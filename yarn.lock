@@ -17628,13 +17628,13 @@ __metadata:
   linkType: hard
 
 "@types/passport-google-oauth20@npm:^2.0.3":
-  version: 2.0.11
-  resolution: "@types/passport-google-oauth20@npm:2.0.11"
+  version: 2.0.16
+  resolution: "@types/passport-google-oauth20@npm:2.0.16"
   dependencies:
     "@types/express": "*"
     "@types/passport": "*"
     "@types/passport-oauth2": "*"
-  checksum: 5e87a0bf40d77ce863dbcea4ae1cd6bccc663282593c9b6ce83b0e2d5d6c56ed9dc0275a04f5d81832f03b3a477fd47d17fd9b3ee22ceb69ca445ab0b0d326d7
+  checksum: 721163b179efd43dba861d8ce36687d58278d3aa30207f5b2e7a05f41814ea0b89edae062d1c2bfa11a4d28e4259cca423c6e53cc30e52402e213b90f5caf705
   languageName: node
   linkType: hard
 
