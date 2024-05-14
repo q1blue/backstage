@@ -49,8 +49,8 @@
   },
   "version": "1.17.0-next.0",
   "dependencies": {
-    "@backstage/errors": "workspace:^",
-    "@manypkg/get-packages": "^1.1.3"
+    "@backstage/errors": "0.1.1",
+    "@manypkg/get-packages": "^2.0.0"
   },
   "devDependencies": {
     "@backstage/cli": "workspace:*",
