@@ -17123,12 +17123,12 @@ __metadata:
   linkType: hard
 
 "@types/inquirer@npm:^8.1.3":
-  version: 8.2.6
-  resolution: "@types/inquirer@npm:8.2.6"
+  version: 8.2.10
+  resolution: "@types/inquirer@npm:8.2.10"
   dependencies:
     "@types/through": "*"
     rxjs: ^7.2.0
-  checksum: d09c3b6bbfb1aff8bdb8fc938d43536be55dfb51af0c91d0105e3f7c5e3950c12618ac00e2e91f10b5abeba38f4b903289be1df5aa31f213b58c3cc675a19f81
+  checksum: e576823345146e939e93e06fc5a81baa5231f0113b669191155cd5f5925b3e897d3a3c42c0be8b3e7b0b188b7e05d1cf42011cc2da4d123f7e58940caf9cd17f
   languageName: node
   linkType: hard
 
@@ -28006,7 +28006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inquirer@npm:8.2.5, inquirer@npm:^8.0.0, inquirer@npm:^8.2.0":
+"inquirer@npm:8.2.5":
   version: 8.2.5
   resolution: "inquirer@npm:8.2.5"
   dependencies:
@@ -28026,6 +28026,29 @@ __metadata:
     through: ^2.3.6
     wrap-ansi: ^7.0.0
   checksum: f13ee4c444187786fb393609dedf6b30870115a57b603f2e6424f29a99abc13446fd45ee22461c33c9c40a92a60a8df62d0d6b25d74fc6676fa4cb211de55b55
+  languageName: node
+  linkType: hard
+
+"inquirer@npm:^8.0.0, inquirer@npm:^8.2.0":
+  version: 8.2.6
+  resolution: "inquirer@npm:8.2.6"
+  dependencies:
+    ansi-escapes: ^4.2.1
+    chalk: ^4.1.1
+    cli-cursor: ^3.1.0
+    cli-width: ^3.0.0
+    external-editor: ^3.0.3
+    figures: ^3.0.0
+    lodash: ^4.17.21
+    mute-stream: 0.0.8
+    ora: ^5.4.1
+    run-async: ^2.4.0
+    rxjs: ^7.5.5
+    string-width: ^4.1.0
+    strip-ansi: ^6.0.0
+    through: ^2.3.6
+    wrap-ansi: ^6.0.1
+  checksum: 387ffb0a513559cc7414eb42c57556a60e302f820d6960e89d376d092e257a919961cd485a1b4de693dbb5c0de8bc58320bfd6247dfd827a873aa82a4215a240
   languageName: node
   linkType: hard
 
@@ -42522,7 +42545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrap-ansi@npm:^6.2.0":
+"wrap-ansi@npm:^6.0.1, wrap-ansi@npm:^6.2.0":
   version: 6.2.0
   resolution: "wrap-ansi@npm:6.2.0"
   dependencies:
