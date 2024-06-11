@@ -11761,12 +11761,12 @@ __metadata:
   linkType: hard
 
 "@grpc/grpc-js@npm:~1.8.0":
-  version: 1.8.9
-  resolution: "@grpc/grpc-js@npm:1.8.9"
+  version: 1.8.22
+  resolution: "@grpc/grpc-js@npm:1.8.22"
   dependencies:
     "@grpc/proto-loader": ^0.7.0
     "@types/node": ">=12.12.47"
-  checksum: 40408af0c0e2b61dbb0fe1c246ae30404c89c601f3e9f9f8447f82d01d8dc0c8befccf2afe9ded07dfc8bd89c927bcbfb5925d4b1ae887299112b2ab549f519c
+  checksum: 4e7be493f568ce7f6d196b28d1177cab2714261c2df61a5900b5cc93e2f61362c780e57d0dae556972375006b72d39a9e0860d5c78bbe5e354a0bddf0d3da121
   languageName: node
   linkType: hard
 
