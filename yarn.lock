@@ -16758,9 +16758,9 @@ __metadata:
   linkType: hard
 
 "@types/d3-force@npm:^3.0.0":
-  version: 3.0.4
-  resolution: "@types/d3-force@npm:3.0.4"
-  checksum: 779fb597fb41e7bc6a5e1b8969d500deb95c4a73428c7c268bf0ca6f3ed668dd2ed6aa652de7af14d2f9c192dad4f6e7badf2c5bc330624bd8405ac88440b278
+  version: 3.0.10
+  resolution: "@types/d3-force@npm:3.0.10"
+  checksum: 0faf1321ddd85f7bf25769ee97513b380a897791ad1cd6c4282f09e0108e566132fad80f4c73cdb592a352139b22388d3c77458298a00f92ef72e27019fb33c7
   languageName: node
   linkType: hard
 
