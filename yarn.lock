@@ -17852,11 +17852,11 @@ __metadata:
   linkType: hard
 
 "@types/react-virtualized-auto-sizer@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@types/react-virtualized-auto-sizer@npm:1.0.1"
+  version: 1.0.4
+  resolution: "@types/react-virtualized-auto-sizer@npm:1.0.4"
   dependencies:
     "@types/react": "*"
-  checksum: 67eff0670a1991c2b16992274ada5f0b3f9d5c2d6209ef38e8f8ae2c0218211a3292882f5b7dd6f09519000dc20847629f049c9acc267e000626b7141e5927a6
+  checksum: e0d41ac6cf0f48dfef45c0cd70146578f42ad83dad90911aa0dfe72b0e1ea62ca9ff56d4f43f322ec6dae2e7cb4d025aefe0e85241f7782c249aeface1050512
   languageName: node
   linkType: hard
 
@@ -37047,12 +37047,12 @@ __metadata:
   linkType: hard
 
 "react-virtualized-auto-sizer@npm:^1.0.11, react-virtualized-auto-sizer@npm:^1.0.6":
-  version: 1.0.17
-  resolution: "react-virtualized-auto-sizer@npm:1.0.17"
+  version: 1.0.24
+  resolution: "react-virtualized-auto-sizer@npm:1.0.24"
   peerDependencies:
-    react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
-    react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
-  checksum: a9fc3db981e34e95fa1baf278e0fb5be9c31ae34092b4d3059cb55478a4652efca3f1b0f4253d62d099594173e1c1f45a724730b5eecde34a9fc23fbc70c215c
+    react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0
+    react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0
+  checksum: e7d98563735dabbd1c58727c9d3e9f08f6a60a9964d25507cf4ef08f8964b6e421491c892ee0a99e47630118fdca42f1c60cef15ebda3659face58025dba3e98
   languageName: node
   linkType: hard
 
