@@ -3755,7 +3755,7 @@ __metadata:
     react-refresh: ^0.14.0
     recursive-readdir: ^2.2.2
     replace-in-file: ^6.0.0
-    rollup: ^2.60.2
+    rollup: ^3.29.5
     rollup-plugin-dts: ^4.0.1
     rollup-plugin-esbuild: ^4.7.2
     rollup-plugin-postcss: ^4.0.0
@@ -38094,9 +38094,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.60.2":
-  version: 2.77.3
-  resolution: "rollup@npm:2.77.3"
+"rollup@npm:^3.29.5":
+  version: 3.29.5
+  resolution: "rollup@npm:3.29.5"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -38104,7 +38104,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: b179c68249584565ddb5664a241e8e48c293b2207718d885b08ee25797d98857a383f06b544bb89819407da5a71557f4713309a278f61c4778bb32b1d3321a1c
+  checksum: 6f8304e58ac8170a715e61e46c4aa674b2ae2587ed2a712dab58f72e5e54803ae40b485fbe6b3e6a694f4c8f7a59ab936ccf9f6b686c7cfd1f1970fa9ecadf1a
   languageName: node
   linkType: hard
 
