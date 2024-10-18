@@ -49,7 +49,7 @@
   },
   "version": "1.17.0-next.0",
   "dependencies": {
-    "@backstage/errors": "workspace:^",
+    "@backstage/errors": "0.1.1",
     "@manypkg/get-packages": "^1.1.3"
   },
   "devDependencies": {
