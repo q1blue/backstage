@@ -32,8 +32,8 @@
     "start": "backstage-cli package start"
   },
   "dependencies": {
-    "@backstage/core-plugin-api": "workspace:^",
-    "@backstage/plugin-explore-common": "workspace:^"
+    "@backstage/core-plugin-api": "0.1.0",
+    "@backstage/plugin-explore-common": "0.0.1"
   },
   "peerDependencies": {
     "react": "^16.13.1 || ^17.0.0",
