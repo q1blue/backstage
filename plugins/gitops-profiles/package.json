@@ -33,10 +33,10 @@
     "clean": "backstage-cli package clean"
   },
   "dependencies": {
-    "@backstage/config": "workspace:^",
-    "@backstage/core-components": "workspace:^",
-    "@backstage/core-plugin-api": "workspace:^",
-    "@backstage/theme": "workspace:^",
+    "@backstage/config": "0.1.1",
+    "@backstage/core-components": "0.1.0",
+    "@backstage/core-plugin-api": "0.1.0",
+    "@backstage/theme": "0.1.1",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.61",
