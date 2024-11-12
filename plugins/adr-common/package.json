@@ -31,7 +31,7 @@
   "dependencies": {
     "@backstage/catalog-model": "workspace:^",
     "@backstage/integration": "workspace:^",
-    "@backstage/plugin-search-common": "workspace:^",
+    "@backstage/plugin-search-common": "0.3.1",
     "front-matter": "^4.0.2",
     "luxon": "^3.0.0"
   },
