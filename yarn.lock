@@ -4024,7 +4024,7 @@ __metadata:
     "@types/react-helmet": ^6.1.0
     "@types/react-sparklines": ^1.7.0
     "@types/react-syntax-highlighter": ^15.0.0
-    "@types/react-text-truncate": ^0.14.0
+    "@types/react-text-truncate": ^0.19.0
     "@types/react-virtualized-auto-sizer": ^1.0.1
     "@types/react-window": ^1.8.5
     "@types/zen-observable": ^0.8.0
@@ -17830,6 +17830,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 6b5ffb04b41fbe88c63ff7e8ff815fa7e3e52d128a5ccbc134fc412da6b6904dc55a34891aa4769cb5f9b958f48288475f500281cc1f3d74450610a3ec657491
+  languageName: node
+  linkType: hard
+
+"@types/react-text-truncate@npm:^0.19.0":
+  version: 0.19.0
+  resolution: "@types/react-text-truncate@npm:0.19.0"
+  dependencies:
+    "@types/react": "*"
+  checksum: 8d9b9820a479e28886a48890a7ee0f85ffdaf8953825ef94515edc2ebd14546012ea6e4be0e6a9661fddb114eac7e1ca9f2b62c298206935a5efd21943c57166
   languageName: node
   linkType: hard
 
