@@ -4037,7 +4037,7 @@ __metadata:
     history: ^5.0.0
     immer: ^9.0.1
     linkify-react: 4.1.1
-    linkifyjs: 4.1.1
+    linkifyjs: 4.2.0
     lodash: ^4.17.21
     msw: ^1.0.0
     pluralize: ^8.0.0
@@ -30859,6 +30859,13 @@ __metadata:
   version: 4.1.1
   resolution: "linkifyjs@npm:4.1.1"
   checksum: 312b75ec9bc6e7107f2b70e50682e8baccd7b94a64bf7b88cecd352032126b0d6fa7ea41394c417a178c718caa79b70e6ab3570eee7b96a12399689d666e68fb
+  languageName: node
+  linkType: hard
+
+"linkifyjs@npm:4.2.0":
+  version: 4.2.0
+  resolution: "linkifyjs@npm:4.2.0"
+  checksum: 874b59ec3c6c3dbd7a67221fc817ab315c89e3d87f3776a09152bfcc02bd60570dca9c8e9829f4156f0e3c91de9486de72a18fc642efa245e727437e8b6fc58f
   languageName: node
   linkType: hard
 
