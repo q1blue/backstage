@@ -4036,7 +4036,7 @@ __metadata:
     dagre: ^0.8.5
     history: ^5.0.0
     immer: ^9.0.1
-    linkify-react: 4.1.1
+    linkify-react: 4.2.0
     linkifyjs: 4.1.1
     lodash: ^4.17.21
     msw: ^1.0.0
@@ -30852,6 +30852,16 @@ __metadata:
     linkifyjs: ^4.0.0
     react: ">= 15.0.0"
   checksum: 2f213f134055d4a11587e7e0bc3e0ef7e372c8c0d1419dbc5bb8e3a280f325bea9ad9d8d6017fd79f8f86fa4127ed75cbe6f320ef9d92a00ae510f320db0f408
+  languageName: node
+  linkType: hard
+
+"linkify-react@npm:4.2.0":
+  version: 4.2.0
+  resolution: "linkify-react@npm:4.2.0"
+  peerDependencies:
+    linkifyjs: ^4.0.0
+    react: ">= 15.0.0"
+  checksum: fe2b02e874e51fee6f7cf5b30db50412d8afc152e85a16ff5d877678534fd5ea1164cda0b65c1e8792013c3e3db647f99fcac02788cc3e1686dafa486a9e587b
   languageName: node
   linkType: hard
 
