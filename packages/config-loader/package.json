@@ -35,8 +35,8 @@
   "dependencies": {
     "@backstage/cli-common": "workspace:^",
     "@backstage/config": "workspace:^",
-    "@backstage/errors": "workspace:^",
-    "@backstage/types": "workspace:^",
+    "@backstage/errors": "0.1.1",
+    "@backstage/types": "0.1.1",
     "@types/json-schema": "^7.0.6",
     "ajv": "^8.10.0",
     "chokidar": "^3.5.2",
