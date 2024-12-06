@@ -32,11 +32,11 @@
     "start": "backstage-cli package start"
   },
   "dependencies": {
-    "@backstage/core-app-api": "workspace:^",
+    "@backstage/core-app-api": "0.1.0",
     "@backstage/core-components": "workspace:^",
     "@backstage/core-plugin-api": "workspace:^",
     "@backstage/plugin-permission-react": "workspace:^",
-    "@backstage/theme": "workspace:^",
+    "@backstage/theme": "0.1.1",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1"
   },
