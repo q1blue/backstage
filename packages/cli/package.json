@@ -128,7 +128,7 @@
     "sucrase": "^3.20.2",
     "swc-loader": "^0.2.3",
     "tar": "^6.1.12",
-    "terser-webpack-plugin": "^5.1.3",
+    "terser-webpack-plugin": "^5.3.11",
     "util": "^0.12.3",
     "webpack": "^5.70.0",
     "webpack-dev-server": "^4.7.3",
