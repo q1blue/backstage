@@ -9,7 +9,7 @@
   "dependencies": {
     "@backstage/app-defaults": "workspace:^",
     "@backstage/catalog-model": "workspace:^",
-    "@backstage/cli": "workspace:^",
+    "@backstage/cli": "0.29.5",
     "@backstage/config": "workspace:^",
     "@backstage/core-app-api": "workspace:^",
     "@backstage/core-components": "workspace:^",
@@ -29,7 +29,7 @@
     "react-use": "^17.2.4"
   },
   "devDependencies": {
-    "@backstage/cli": "workspace:^",
+    "@backstage/cli": "0.29.5",
     "@testing-library/dom": "^8.0.0",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^12.1.3",
