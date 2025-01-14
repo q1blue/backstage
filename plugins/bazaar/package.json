@@ -24,7 +24,7 @@
   "dependencies": {
     "@backstage/catalog-client": "workspace:^",
     "@backstage/catalog-model": "workspace:^",
-    "@backstage/cli": "workspace:^",
+    "@backstage/cli": "0.29.5",
     "@backstage/core-components": "workspace:^",
     "@backstage/core-plugin-api": "workspace:^",
     "@backstage/errors": "workspace:^",
@@ -48,7 +48,7 @@
     "react-router-dom": "6.0.0-beta.0 || ^6.3.0"
   },
   "devDependencies": {
-    "@backstage/cli": "workspace:^",
+    "@backstage/cli": "0.29.5",
     "@backstage/dev-utils": "workspace:^",
     "@testing-library/jest-dom": "^5.10.1",
     "@types/react": "^16.13.1 || ^17.0.0"
